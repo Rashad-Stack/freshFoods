@@ -1,4 +1,4 @@
-import { FetchUser } from "../LocalStorage";
+import { FetchUser } from "../Utilities/LocalStorage";
 
 const userInfo = FetchUser();
 export const InitialState = {

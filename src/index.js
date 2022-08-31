@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
-import { InitialState } from "./app/Components/Utilities/Context/InitialState";
-import Reducer from "./app/Components/Utilities/Context/Reducer";
-import { StateProvider } from "./app/Components/Utilities/Context/StateProvider";
+import { InitialState } from "./app/Context/InitialState";
+import Reducer from "./app/Context/Reducer";
+import { StateProvider } from "./app/Context/StateProvider";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

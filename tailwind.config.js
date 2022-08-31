@@ -7,6 +7,7 @@ module.exports = {
       width: {
         38: "150px",
         46: "190px",
+
         58: "225px",
         68: "275px",
         76: "300px",
@@ -15,6 +16,7 @@ module.exports = {
         94: "375px",
         116: "460px",
         128: "508px",
+        148: "38rem", //590px
         164: "656px",
         220: "880px",
       },
@@ -34,6 +36,7 @@ module.exports = {
       },
       minWidth: {
         10: "40px",
+        46: "12rem", //190 px
         52: "210px",
         88: "350px",
         156: "620px",
@@ -49,6 +52,9 @@ module.exports = {
         "card-overlay": "rgba(256,256,256,0.4)",
         "primary-light": "#9ca0ab",
       },
+      fontSize: {
+        xxs: "0.625rem", //10px
+      },
     },
   },
   plugins: [
@@ -59,6 +65,12 @@ module.exports = {
           "-moz-tap-highlight-color": "rgba(0,0,0,0)",
           "-o-tap-highlight-color": "rgba(0,0,0,0)",
           "-ms-tap-highlight-color": "rgba(0,0,0,0)",
+        },
+        ".absolute-center": {
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
         },
       });
     }),

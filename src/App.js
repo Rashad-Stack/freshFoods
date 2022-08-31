@@ -1,13 +1,14 @@
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes } from "react-router-dom";
-import { Container } from "./app/Components/Base";
-import { Layout } from "./app/Components/Utilities";
+import { Container, CreateContainer } from "./app/Components";
+import { Layout } from "./app/Utilities";
 function App() {
   return (
     <AnimatePresence mode="wait">
       <Layout>
         <Routes>
           <Route path="/*" element={<Container />} />
+          <Route path="/createnewitem" element={<CreateContainer />} />
         </Routes>
       </Layout>
     </AnimatePresence>

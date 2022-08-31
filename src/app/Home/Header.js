@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { MdAdd, MdLogout, MdShoppingBasket } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { ActionType } from "../Context/Reducer";
+import { useStateValue } from "../Context/StateProvider";
 import { app } from "../Firebase";
-import { ActionType } from "../Utilities/Context/Reducer";
-import { useStateValue } from "../Utilities/Context/StateProvider";
 function Header() {
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
@@ -36,7 +36,7 @@ function Header() {
   };
 
   return (
-    <header className="fixed z-50 w-screen p-6 md:px-16">
+    <header className="fixed z-50 w-screen p-6 md:px-16 bg-secondary">
       {/* Desktop and Tablet */}
       <nav className="hidden w-ful h-full md:flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
@@ -86,9 +86,14 @@ function Header() {
                 className="w-40 bg-gray-50 shadow-lg rounded-lg flex flex-col absolute top-12 right-0 py-2"
               >
                 {user && user?.email === "tex.eng.rashed@gmail.com" && (
-                  <button className="flex items-center gap-3 px-5 py-1 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-primary text-base highlight-remove">
-                    New Item <MdAdd />
-                  </button>
+                  <Link to="createnewitem">
+                    <button
+                      className="flex items-center gap-3 px-5 py-1 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-primary text-base highlight-remove"
+                      onClick={() => setIsMenu(false)}
+                    >
+                      New Item <MdAdd />
+                    </button>
+                  </Link>
                 )}
                 <button
                   className="flex items-center gap-3 px-5 py-1 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-primary text-base highlight-remove"
@@ -132,22 +137,39 @@ function Header() {
                 className="w-40 bg-gray-50 shadow-lg rounded-lg flex flex-col absolute top-12 right-0"
               >
                 {user && user?.email === "tex.eng.rashed@gmail.com" && (
-                  <button className="flex items-center gap-3 px-4 py-1 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-primary text-base highlight-remove">
-                    New Item <MdAdd />
-                  </button>
+                  <Link to="createnewitem">
+                    <button
+                      className="flex items-center gap-3 px-4 py-1 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-primary text-base highlight-remove"
+                      onClick={() => setIsMenu(false)}
+                    >
+                      New Item <MdAdd />
+                    </button>
+                  </Link>
                 )}
 
                 <ul className="flex flex-col text-start gap-3">
-                  <li className="text-base text-primary hover:bg-slate-100 hover:text-quaternary duration-100 transition-all ease-in-out cursor-pointer px-4 py-2">
+                  <li
+                    className="text-base text-primary hover:bg-slate-100 hover:text-quaternary duration-100 transition-all ease-in-out cursor-pointer px-4 py-2"
+                    onClick={() => setIsMenu(false)}
+                  >
                     Home
                   </li>
-                  <li className="text-base text-primary hover:bg-slate-100 hover:text-quaternary duration-100 transition-all ease-in-out cursor-pointer px-4 py-2">
+                  <li
+                    className="text-base text-primary hover:bg-slate-100 hover:text-quaternary duration-100 transition-all ease-in-out cursor-pointer px-4 py-2"
+                    onClick={() => setIsMenu(false)}
+                  >
                     Menu
                   </li>
-                  <li className="text-base text-primary hover:bg-slate-100 hover:text-quaternary duration-100 transition-all ease-in-out cursor-pointer px-4 py-2">
+                  <li
+                    className="text-base text-primary hover:bg-slate-100 hover:text-quaternary duration-100 transition-all ease-in-out cursor-pointer px-4 py-2"
+                    onClick={() => setIsMenu(false)}
+                  >
                     About Us
                   </li>
-                  <li className="text-base text-primary hover:bg-slate-100 hover:text-quaternary duration-100 transition-all ease-in-out cursor-pointer px-4 py-2">
+                  <li
+                    className="text-base text-primary hover:bg-slate-100 hover:text-quaternary duration-100 transition-all ease-in-out cursor-pointer px-4 py-2"
+                    onClick={() => setIsMenu(false)}
+                  >
                     Service
                   </li>
                 </ul>

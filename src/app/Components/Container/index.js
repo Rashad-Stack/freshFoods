@@ -1,4 +1,4 @@
-import { HomeContainer } from "../../Base";
+import HomeContainer from "../HomeContainer";
 
 const Container = () => {
   return (

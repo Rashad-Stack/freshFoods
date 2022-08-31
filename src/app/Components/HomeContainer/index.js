@@ -1,8 +1,11 @@
 import React from "react";
-
+import { heroData as Foods } from "../../Data";
 const HomeContainer = () => {
   return (
-    <section id="home" className="w-full grid grid-cols-1 md:grid-cols-2 gap-2">
+    <section
+      id="home"
+      className="w-full grid grid-cols-1 md:grid-cols-2 gap-2 py-2"
+    >
       <div className="py-2 flex flex-1 flex-col items-start justify-center gap-5">
         <div className="flex items-center justify-center bg-orange-100 gap-2 px-4 py-1 rounded-full">
           <p className="text-base text-orange-500 font-semibold">
@@ -36,19 +39,34 @@ const HomeContainer = () => {
       <div className="py-2 flex-1 flex items-center relative">
         <img
           src="Assets/heroBg.png"
-          className=" ml-auto h-420 w-full lg:w-auto lg:h-650"
+          className=" ml-auto h-106 w-full lg:w-auto lg:h-200"
           alt="hero-bg"
         />
-        <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center px-32 py-4">
-          <div className="w-46 p-4 bg-card-overlay backdrop-blur-md rounded-md flex flex-col items-center justify-center">
-            <img src="Assets/i1.png" alt="Ice cream" className="w-40 -mt-20 " />
-            <p className="text-base font-semibold text-primary">
-              Chocolate Vanilla
-            </p>
-            <p className="text-sm text-primary-light font-semibold">
-              Chocolate & Vanilla
-            </p>
-          </div>
+        <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-wrap gap-x-3 gap-y-16 lg:gap-y-32 items-center justify-center 2xl:px-40 py-16">
+          {Foods.length &&
+            Foods.map((food) => (
+              <div
+                key={food?.id}
+                className=" lg:w-46 p-4 bg-card-overlay backdrop-blur-md rounded-xl flex flex-col items-center justify-center shadow-md"
+              >
+                <img
+                  src={food?.imageSrc}
+                  alt="Ice cream"
+                  className="w-20 lg:w-40 -mt-10 lg:-mt-20 "
+                />
+                <div className="text-center">
+                  <p className="text-base lg:text-xl  font-semibold text-primary">
+                    {food?.name}
+                  </p>
+                  <p className="text-xs lg:text-sm text-primary-light font-semibold my-1 lg:my-3">
+                    {food?.description}
+                  </p>
+                </div>
+                <p className="text-sm font-semibold text-primary">
+                  <span className="text-xs text-tertiary">$</span> {food?.price}
+                </p>
+              </div>
+            ))}
         </div>
       </div>
     </section>
