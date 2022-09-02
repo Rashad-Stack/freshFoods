@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import {
+  MdAttachMoney,
   MdCloudUpload,
   MdDelete,
   MdFastfood,
@@ -20,6 +21,8 @@ const CreateContainer = () => {
   const [msg, setmsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const deleteImage = () => {};
+
+  const saveDetail = () => {};
 
   return (
     <section className="w-full min-h-screen flex items-center justify-center gap-4">
@@ -118,11 +121,33 @@ const CreateContainer = () => {
             <MdFoodBank className="text-gray-700 text-2xl" />
             <input
               type="text"
+              value={calories}
               required
               placeholder="Calories"
               className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-quaternary"
+              onChange={(e) => setCalories(e.target.value)}
             />
           </div>
+          <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
+            <MdAttachMoney className="text-gray-700 text-2xl" />
+            <input
+              type="text"
+              value={price}
+              required
+              placeholder="Price"
+              className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-quaternary"
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="flex items-center w-full mt-5">
+          <button
+            type="button"
+            className="ml-0 md:ml-auto w-full md:w-auto border-none outline-none bg-emerald-500 px-12 py-2 rounded-lg text-lg text-white font-semibold"
+            onClick={saveDetail}
+          >
+            Save
+          </button>
         </div>
       </div>
     </section>
