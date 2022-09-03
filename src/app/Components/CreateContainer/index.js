@@ -58,7 +58,10 @@ const CreateContainer = () => {
       }
     );
   };
-  const deleteImage = () => {};
+  const deleteImage = () => {
+    setIsLoading(true);
+    const deleteRef = ref();
+  };
 
   const saveDetail = (e) => {};
 
