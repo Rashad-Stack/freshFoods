@@ -1,3 +1,4 @@
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import {
@@ -8,6 +9,7 @@ import {
   MdFoodBank,
 } from "react-icons/md";
 import { categories } from "../../Data";
+import { storage } from "../../Firebase";
 import { Loader } from "../../Utilities";
 
 const CreateContainer = () => {
@@ -18,11 +20,47 @@ const CreateContainer = () => {
   const [imageAsset, setImageAsset] = useState(null);
   const [fields, setField] = useState(false);
   const [alertStatus, setAlertStatus] = useState("danger");
-  const [msg, setmsg] = useState(null);
+  const [msg, setMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const uploadImage = (e) => {
+    setIsLoading(true);
+    const imageFile = e.target.files[0];
+    const storageRef = ref(storage, `Images/${Date.now()}-${imageFile.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, imageFile);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const uploadProgress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      },
+      (error) => {
+        console.log(error);
+        setField(true);
+        setMsg("Error while uploading : Try again 🤖");
+        setAlertStatus("danger");
+        setTimeout(() => {
+          setField(false);
+          setIsLoading(false);
+        }, 4000);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImageAsset(downloadURL);
+          setIsLoading(false);
+          setField(true);
+          setMsg("image uploaded successfully 😊");
+          setAlertStatus("success");
+          setTimeout(() => {
+            setField(false);
+          }, 4000);
+        });
+      }
+    );
+  };
   const deleteImage = () => {};
 
-  const saveDetail = () => {};
+  const saveDetail = (e) => {};
 
   return (
     <section className="w-full min-h-screen flex items-center justify-center gap-4">
@@ -78,10 +116,7 @@ const CreateContainer = () => {
             <>
               {!imageAsset ? (
                 <>
-                  <label
-                    htmlFor=""
-                    className="w-full h-full flex flex-col items-center justify-center cursor-pointer"
-                  >
+                  <label className="w-full h-full flex flex-col items-center justify-center cursor-pointer">
                     <div className="w-full h-full flex flex-col items-center justify-center gap-2">
                       <MdCloudUpload className="text-gray-500 text-3xl hover:text-gray-700" />
                       <p className="text-gray-500 hover:text-gray-700">
@@ -93,6 +128,7 @@ const CreateContainer = () => {
                       name="uploadimage"
                       accept="image/*"
                       className="w-0 h-0"
+                      onChange={uploadImage}
                     />
                   </label>
                 </>
