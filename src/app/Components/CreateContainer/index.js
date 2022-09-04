@@ -1,4 +1,9 @@
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import {
@@ -11,6 +16,7 @@ import {
 import { categories } from "../../Data";
 import { storage } from "../../Firebase";
 import { Loader } from "../../Utilities";
+import { saveItem } from "../../Utilities/firebaseFunction";
 
 const CreateContainer = () => {
   const [title, setTitle] = useState("");
@@ -60,10 +66,68 @@ const CreateContainer = () => {
   };
   const deleteImage = () => {
     setIsLoading(true);
-    const deleteRef = ref();
+    const deleteRef = ref(storage, imageAsset);
+    deleteObject(deleteRef).then(() => {
+      setImageAsset(null);
+      setIsLoading(false);
+      setField(true);
+      setMsg("Image delete successfully 👌");
+      setAlertStatus("success");
+      setTimeout(() => {
+        setField(false);
+      }, 4000);
+    });
   };
 
-  const saveDetail = (e) => {};
+  const saveDetail = () => {
+    setField(true);
+    try {
+      if (!title || !calories || !imageAsset || !price || !category) {
+        setField(true);
+        setMsg("Required Fields cant't be empty");
+        setAlertStatus("danger");
+        setTimeout(() => {
+          setField(false);
+          setIsLoading(false);
+        }, 4000);
+      } else {
+        const data = {
+          id: `${Date.now()}`,
+          title: title,
+          imageURL: imageAsset,
+          category: category,
+          calories: calories,
+          qty: 1,
+          price: price,
+        };
+        saveItem(data);
+        setIsLoading(false);
+        setField(true);
+        clearData();
+        setMsg("Data uploaded successfully 👌");
+        setAlertStatus("success");
+        setTimeout(() => {
+          setField(false);
+        }, 4000);
+      }
+    } catch {
+      setField(true);
+      setMsg("Error while uploading : Try again 🤖");
+      setAlertStatus("danger");
+      setTimeout(() => {
+        setField(false);
+        setIsLoading(false);
+      }, 4000);
+    }
+  };
+
+  const clearData = () => {
+    setTitle("");
+    setImageAsset(null);
+    setCalories("");
+    setPrice("");
+    setCategory("Select Category");
+  };
 
   return (
     <section className="w-full min-h-screen flex items-center justify-center gap-4">
