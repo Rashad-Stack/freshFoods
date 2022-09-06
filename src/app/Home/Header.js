@@ -1,6 +1,6 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import { useState } from "react";
 import { MdAdd, MdLogout, MdShoppingBasket } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { ActionType } from "../Context/Reducer";
@@ -14,7 +14,7 @@ function Header() {
   const login = async () => {
     if (!user) {
       const {
-        user: { StateProvider, providerData },
+        user: { providerData },
       } = await signInWithPopup(firebaseAuth, provider);
       dispatch({
         type: ActionType.SET_USER,
