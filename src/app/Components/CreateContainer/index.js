@@ -18,7 +18,7 @@ import { storage } from "../../Firebase";
 import { Loader } from "../../Utilities";
 import { saveItem } from "../../Utilities/firebaseFunction";
 
-const CreateContainer = () => {
+const CreateContainer = ({ foodItems, fetchCall }) => {
   const [title, setTitle] = useState("");
   const [calories, setCalories] = useState("");
   const [price, setPrice] = useState("");
@@ -36,10 +36,7 @@ const CreateContainer = () => {
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
     uploadTask.on(
       "state_changed",
-      (snapshot) => {
-        const uploadProgress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      },
+      (snapshot) => (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
       (error) => {
         console.log(error);
         setField(true);
@@ -119,6 +116,7 @@ const CreateContainer = () => {
         setIsLoading(false);
       }, 4000);
     }
+    fetchCall();
   };
 
   const clearData = () => {
