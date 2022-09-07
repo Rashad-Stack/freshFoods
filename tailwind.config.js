@@ -37,6 +37,8 @@ module.exports = {
         10: "40px",
         46: "12rem", //190 px
         52: "210px",
+        76: "18rem", //300 px
+        86: "22rem", //340 px
         88: "350px",
         156: "620px",
       },
@@ -71,6 +73,14 @@ module.exports = {
           left: "50%",
           transform: "translate(-50%,-50%)",
         },
+        ".scrollbar-none": {
+          "-webkit-overflow-style": "none",
+          "-moz-overflow-style": "none",
+          "-o-overflow-style": "none",
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+        },
+        ".scrollbar-none::-webkit-scrollbar": { display: "none" },
       });
     }),
   ],

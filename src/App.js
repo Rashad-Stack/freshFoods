@@ -25,12 +25,10 @@ function App() {
     <AnimatePresence mode="wait">
       <Layout>
         <Routes>
-          <Route path="/*" element={<Container />} />
+          <Route path="/*" element={<Container foodItems={foodItems} />} />
           <Route
             path="/createnewitem"
-            element={
-              <CreateContainer fetchCall={fetchData} foodItems={foodItems} />
-            }
+            element={<CreateContainer fetchData={fetchData} />}
           />
         </Routes>
       </Layout>

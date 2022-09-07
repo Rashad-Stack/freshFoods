@@ -18,7 +18,7 @@ import { storage } from "../../Firebase";
 import { Loader } from "../../Utilities";
 import { saveItem } from "../../Utilities/firebaseFunction";
 
-const CreateContainer = ({ foodItems, fetchCall }) => {
+const CreateContainer = ({ fetchData }) => {
   const [title, setTitle] = useState("");
   const [calories, setCalories] = useState("");
   const [price, setPrice] = useState("");
@@ -116,7 +116,7 @@ const CreateContainer = ({ foodItems, fetchCall }) => {
         setIsLoading(false);
       }, 4000);
     }
-    fetchCall();
+    fetchData();
   };
 
   const clearData = () => {
