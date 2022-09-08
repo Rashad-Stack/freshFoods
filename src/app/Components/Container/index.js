@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-
 import { createRef, useEffect, useRef, useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { HomeContainer, RowContainer } from "../../Components";
@@ -34,7 +33,7 @@ const Container = () => {
       return prevVal - cardWidth;
     });
   };
-  console.log(scrollValue);
+
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center">
       <HomeContainer />
@@ -62,7 +61,7 @@ const Container = () => {
         </div>
         <div
           ref={rowContainer}
-          className="w-full my-12 flex items-center md:gap-10 overflow-x-scroll scrollbar-none"
+          className="w-full my-12 flex items-center gap-5 overflow-x-scroll scrollbar-none"
         >
           {foodItems &&
             foodItems?.map((food) => (

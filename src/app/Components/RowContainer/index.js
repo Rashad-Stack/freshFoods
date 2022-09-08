@@ -5,13 +5,13 @@ function Index({ food, cardRef }) {
   return (
     <figure
       ref={cardRef}
-      className="w-76 min-w-76 md:w-86 md:min-w-86 h-auto bg-gray-100 backdrop-blur-lg p-2 my-12"
+      className="w-76 min-w-76 md:w-86 md:min-w-86 h-58 bg-gray-50 backdrop-blur-lg p-2 my-12 hover:drop-shadow-lg flex flex-col items-center justify-between"
     >
       <div className="w-full flex items-center justify-between">
         <motion.img
           src={food?.imageURL}
           alt={food?.title}
-          className="w-40"
+          className="h-40 w-40 object-contain -mt-8 drop-shadow-2xl"
           whileHover={{ scale: 1.1 }}
         />
         <motion.button
