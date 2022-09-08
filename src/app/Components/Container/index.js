@@ -8,6 +8,11 @@ const Container = () => {
   const [scrollValue, setScrollValue] = useState(0);
   const rowContainer = useRef();
   const cardRef = createRef();
+  const [filteredFoods, setFilteredFoods] = useState([]);
+
+  useEffect(() => {
+    setFilteredFoods(foodItems?.filter((food) => food.category === "fruits"));
+  }, [foodItems]);
 
   useEffect(() => {
     rowContainer.current.scrollTo({
@@ -63,8 +68,8 @@ const Container = () => {
           ref={rowContainer}
           className="w-full my-12 flex items-center gap-5 overflow-x-scroll scrollbar-none"
         >
-          {foodItems &&
-            foodItems?.map((food) => (
+          {filteredFoods &&
+            filteredFoods?.map((food) => (
               <RowContainer key={food?.id} food={food} cardRef={cardRef} />
             ))}
         </div>

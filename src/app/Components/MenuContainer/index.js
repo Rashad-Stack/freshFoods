@@ -1,8 +1,17 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { RowContainer } from "../../Components";
+import { useStateValue } from "../../Context/StateProvider";
 import { categories } from "../../Data";
+
 function MenuContainer() {
+  const [{ foodItems }] = useStateValue();
   const [filter, setFilter] = useState("chicken");
+  const [filteredFoods, setFilteredFoods] = useState([]);
+
+  useEffect(() => {
+    setFilteredFoods(foodItems?.filter((food) => food.category === filter));
+  }, [foodItems, filter]);
 
   return (
     <section id="menu" className="w-full my-6">
@@ -54,6 +63,12 @@ function MenuContainer() {
                   </p>
                 </span>
               </motion.button>
+            ))}
+        </div>
+        <div className="w-full my-12 flex flex-wrap justify-center items-center gap-5 ">
+          {filteredFoods &&
+            filteredFoods?.map((food) => (
+              <RowContainer key={food?.id} food={food} />
             ))}
         </div>
       </div>
