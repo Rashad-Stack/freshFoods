@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { createRef, useEffect, useRef, useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { HomeContainer, RowContainer } from "../../Components";
+import { HomeContainer, MenuContainer, RowContainer } from "../../Components";
 import { useStateValue } from "../../Context/StateProvider";
 const Container = () => {
   const [{ foodItems }] = useStateValue();
@@ -40,7 +40,7 @@ const Container = () => {
       <section className="w-full my-6">
         <div className="w-full flex items-center justify-between">
           <h2 className="text-2xl font-semibold uppercase relative text-quaternary before:absolute before:rounded-lg before:w-32 before:h-1 before:-bottom-2 before:left-0 before:bg-gradient-to-tr from-orange-400 to-orange-600 transition-all ease-in-out duration-100">
-            Our fresh & healthy foods
+            Our fresh & healthy fruits
           </h2>
           <div className="hidden md:flex gap-3 items-center">
             <motion.button
@@ -69,6 +69,7 @@ const Container = () => {
             ))}
         </div>
       </section>
+      <MenuContainer />
     </div>
   );
 };

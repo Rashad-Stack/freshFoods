@@ -47,11 +47,12 @@ module.exports = {
       },
       colors: {
         primary: "#515151",
+        "primary-light": "#9ca0ab",
         secondary: "#f5f3f3",
         tertiary: "#e80013",
         quaternary: "#2e2e2e",
         "card-overlay": "rgba(256,256,256,0.4)",
-        "primary-light": "#9ca0ab",
+        "card-overlay-light": "rgba(255,255,255,0.8)",
       },
       fontSize: {
         xxs: "0.625rem", //10px

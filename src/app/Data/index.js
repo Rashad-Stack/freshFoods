@@ -1,3 +1,11 @@
+import {
+  GiBubblingBowl,
+  GiRoastChicken,
+  GiDrinkMe,
+  GiFruitBowl,
+  GiRiceCooker,
+} from "react-icons/gi";
+import { IoFishSharp, IoIceCreamSharp } from "react-icons/io5";
 export const heroData = [
   {
     id: 1,
@@ -33,36 +41,43 @@ export const categories = [
     id: 1,
     name: "Chicken",
     urlParamName: "chicken",
+    icon: <GiRoastChicken />,
   },
   {
     id: 2,
     name: "Curry",
     urlParamName: "curry",
+    icon: <GiBubblingBowl />,
   },
   {
     id: 3,
     name: "Rice",
     urlParamName: "rice",
+    icon: <GiRiceCooker />,
   },
   {
     id: 4,
     name: "Fish",
     urlParamName: "fish",
+    icon: <IoFishSharp />,
   },
   {
     id: 5,
     name: "Fruits",
     urlParamName: "fruits",
+    icon: <GiFruitBowl />,
   },
   {
     id: 6,
     name: "Icecreams",
     urlParamName: "icecreams",
+    icon: <IoIceCreamSharp />,
   },
 
   {
     id: 7,
     name: "Soft Drinks",
     urlParamName: "drinks",
+    icon: <GiDrinkMe />,
   },
 ];
