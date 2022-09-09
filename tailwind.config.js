@@ -42,6 +42,9 @@ module.exports = {
         88: "350px",
         156: "620px",
       },
+      maxWidth: {
+        15: "4rem", //60px
+      },
       minHeight: {
         10: "40px",
       },
@@ -56,6 +59,9 @@ module.exports = {
       },
       fontSize: {
         xxs: "0.625rem", //10px
+      },
+      zIndex: {
+        60: 60,
       },
     },
   },

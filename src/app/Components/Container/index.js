@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import { createRef, useEffect, useRef, useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { HomeContainer, MenuContainer, RowContainer } from "../../Components";
+import {
+  CartContainer,
+  HomeContainer,
+  MenuContainer,
+  RowContainer,
+} from "../../Components";
 import { useStateValue } from "../../Context/StateProvider";
 const Container = () => {
   const [{ foodItems }] = useStateValue();
@@ -68,13 +73,26 @@ const Container = () => {
           ref={rowContainer}
           className="w-full my-12 flex items-center gap-5 overflow-x-scroll scrollbar-none"
         >
-          {filteredFoods &&
+          {filteredFoods && filteredFoods?.length > 0 ? (
             filteredFoods?.map((food) => (
               <RowContainer key={food?.id} food={food} cardRef={cardRef} />
-            ))}
+            ))
+          ) : (
+            <div className="flex flex-col items-center">
+              <img
+                src="Assets/NotFound.svg"
+                alt="Not Found"
+                className="w-80 h-80 object-contain"
+              />
+              <h1 className="text-primary text-2xl text-semibold">
+                Dishes Not Found
+              </h1>
+            </div>
+          )}
         </div>
       </section>
       <MenuContainer />
+      <CartContainer />
     </div>
   );
 };

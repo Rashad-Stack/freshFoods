@@ -6,7 +6,7 @@ import { categories } from "../../Data";
 
 function MenuContainer() {
   const [{ foodItems }] = useStateValue();
-  const [filter, setFilter] = useState("chicken");
+  const [filter, setFilter] = useState(categories[0]?.urlParamName);
   const [filteredFoods, setFilteredFoods] = useState([]);
 
   useEffect(() => {
@@ -66,10 +66,22 @@ function MenuContainer() {
             ))}
         </div>
         <div className="w-full my-12 flex flex-wrap justify-center items-center gap-5 ">
-          {filteredFoods &&
+          {filteredFoods && filteredFoods?.length > 0 ? (
             filteredFoods?.map((food) => (
               <RowContainer key={food?.id} food={food} />
-            ))}
+            ))
+          ) : (
+            <div className="flex flex-col items-center">
+              <img
+                src="Assets/NotFound.svg"
+                alt="Not Found"
+                className="w-80 h-80 object-contain"
+              />
+              <h1 className="text-primary text-2xl text-semibold">
+                Dishes Not Found
+              </h1>
+            </div>
+          )}
         </div>
       </div>
     </section>
