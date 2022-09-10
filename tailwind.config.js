@@ -15,7 +15,7 @@ module.exports = {
         94: "375px",
         116: "460px",
         128: "508px",
-        148: "38rem", //590px
+        148: "38rem",
         164: "656px",
         220: "880px",
       },
@@ -35,18 +35,21 @@ module.exports = {
       },
       minWidth: {
         10: "40px",
-        46: "12rem", //190 px
+        46: "12rem",
         52: "210px",
-        76: "18rem", //300 px
-        86: "22rem", //340 px
+        76: "18rem",
+        86: "22rem",
         88: "350px",
         156: "620px",
       },
       maxWidth: {
-        15: "4rem", //60px
+        15: "4rem",
       },
       minHeight: {
         10: "40px",
+      },
+      maxHeight: {
+        86: "22rem",
       },
       colors: {
         primary: "#515151",

@@ -1,6 +1,7 @@
 export const ActionType = {
   SET_USER: "SET_USER",
   SET_FOOD_ITEMS: "SET_FOOD_ITEMS",
+  SET_CART_SHOW: "SET_CART_SHOW:",
 };
 export const Reducer = (state, action) => {
   switch (action.type) {
@@ -13,6 +14,11 @@ export const Reducer = (state, action) => {
       return {
         ...state,
         foodItems: action.foodItems,
+      };
+    case ActionType.SET_CART_SHOW:
+      return {
+        ...state,
+        cartShow: action.cartShow,
       };
     default:
       return state;

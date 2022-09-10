@@ -9,7 +9,7 @@ import { app } from "../Firebase";
 function Header() {
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, cartShow }, dispatch] = useStateValue();
   const [isMenu, setIsMenu] = useState(false);
   const login = async () => {
     if (!user) {
@@ -26,12 +26,17 @@ function Header() {
     }
   };
   const logout = () => {
-    console.log("ok");
     setIsMenu(false);
     localStorage.clear();
     dispatch({
       type: ActionType.SET_USER,
       user: null,
+    });
+  };
+  const showCart = () => {
+    dispatch({
+      type: ActionType.SET_CART_SHOW,
+      cartShow: !cartShow,
     });
   };
 
@@ -63,13 +68,17 @@ function Header() {
               Service
             </li>
           </motion.ul>
-          <button className="relative flex items-center">
+          <motion.button
+            whileTap={{ scale: 0.75 }}
+            className="relative flex items-center highlight-remove"
+            onClick={showCart}
+          >
             <MdShoppingBasket className="text-primary text-2xl cursor-pointer" />
             <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-tertiary flex items-center justify-center">
               <span className="text-xs text-white font-semibold">2</span>
             </span>
-          </button>
-          <div className="relative highlight-remove">
+          </motion.button>
+          <div className="relative">
             <button className="highlight-remove" onClick={login}>
               <motion.img
                 whileTap={{ scale: 0.6 }}
@@ -114,12 +123,16 @@ function Header() {
         </Link>
 
         <div className="flex items-center gap-5">
-          <button className="relative flex items-center active:bg-none highlight-remove">
+          <motion.button
+            whileTap={{ scale: 0.75 }}
+            className="relative flex items-center active:bg-none highlight-remove"
+            onClick={showCart}
+          >
             <MdShoppingBasket className="text-primary text-2xl cursor-pointer" />
             <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-tertiary flex items-center justify-center">
               <span className="text-xs text-white font-semibold">2</span>
             </span>
-          </button>
+          </motion.button>
           <div className="relative">
             <button className="highlight-remove" onClick={login}>
               <motion.img

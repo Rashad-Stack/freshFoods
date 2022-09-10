@@ -9,7 +9,7 @@ import {
 } from "../../Components";
 import { useStateValue } from "../../Context/StateProvider";
 const Container = () => {
-  const [{ foodItems }] = useStateValue();
+  const [{ foodItems, cartShow }] = useStateValue();
   const [scrollValue, setScrollValue] = useState(0);
   const rowContainer = useRef();
   const cardRef = createRef();
@@ -92,7 +92,7 @@ const Container = () => {
         </div>
       </section>
       <MenuContainer />
-      <CartContainer />
+      {cartShow && <CartContainer />}
     </div>
   );
 };
