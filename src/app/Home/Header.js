@@ -9,7 +9,7 @@ import { app } from "../Firebase";
 function Header() {
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
-  const [{ user, cartShow }, dispatch] = useStateValue();
+  const [{ user, cartShow, cartItems }, dispatch] = useStateValue();
   const [isMenu, setIsMenu] = useState(false);
   const login = async () => {
     if (!user) {
@@ -74,9 +74,13 @@ function Header() {
             onClick={showCart}
           >
             <MdShoppingBasket className="text-primary text-2xl cursor-pointer" />
-            <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-tertiary flex items-center justify-center">
-              <span className="text-xs text-white font-semibold">2</span>
-            </span>
+            {cartItems && cartItems.length > 0 && (
+              <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-tertiary flex items-center justify-center">
+                <span className="text-xs text-white font-semibold">
+                  {cartItems.length}
+                </span>
+              </span>
+            )}
           </motion.button>
           <div className="relative">
             <button className="highlight-remove" onClick={login}>

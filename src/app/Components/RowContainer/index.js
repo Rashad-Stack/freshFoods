@@ -1,7 +1,22 @@
 import { motion } from "framer-motion";
-
+import { useEffect } from "react";
 import { MdShoppingBasket } from "react-icons/md";
+import { ActionType } from "../../Context/Reducer";
+import { useStateValue } from "../../Context/StateProvider";
 function Index({ food, cardRef }) {
+  const [{ cartItems }, dispatch] = useStateValue();
+
+  const addToCart = () => {
+    dispatch({
+      type: ActionType.SET_CART_ITEMS,
+      cartItems: [...cartItems, food],
+    });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   return (
     <figure
       ref={cardRef}
@@ -18,6 +33,7 @@ function Index({ food, cardRef }) {
         <motion.button
           className="w-8 h-8 bg-red-700 rounded-full flex items-center justify-center cursor-pointer shadow-md highlight-remove"
           whileTap={{ scale: 0.75 }}
+          onClick={addToCart}
         >
           <MdShoppingBasket className="text-white" />
         </motion.button>
